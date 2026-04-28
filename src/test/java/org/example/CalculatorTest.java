@@ -18,13 +18,31 @@ class CalculatorTest {
     @Test
     @DisplayName("Adding two positive numbers returns their sum")
     void addTwoPositiveNumbers() {
-        assertEquals(5, calculator.add(2, 3));
+        // Arrange
+        int a = 2;
+        int b = 3;
+        int expected = 5;
+
+        // Act
+        int result = calculator.add(a, b);
+
+        // Assert
+        assertEquals(expected, result);
     }
 
     @Test
     @DisplayName("Subtracting two numbers returns the difference")
     void subtractTwoNumbers() {
-        assertEquals(1, calculator.subtract(3, 2));
+        // Arrange
+        int a = 3;
+        int b = 2;
+        int expected = 1;
+
+        // Act
+        int result = calculator.subtract(a, b);
+
+        // Assert
+        assertEquals(expected, result);
     }
 
     @Override
@@ -35,24 +53,88 @@ class CalculatorTest {
     @Test
     @DisplayName("Multiplying two numbers returns the product")
     void multiplyTwoNumbers() {
-        assertEquals(6, calculator.multiply(2, 3));
+        // Arrange
+        int a = 2;
+        int b = 3;
+        int expected = 6;
+
+        // Act
+        int result = calculator.multiply(a, b);
+
+        // Assert
+        assertEquals(expected, result);
     }
+
     @Test
     @DisplayName("Dividing two numbers returns the quotient")
     void divideTwoNumbers() {
-        assertEquals(2.5, calculator.divide(5, 2));
+        // Arrange
+        int a = 5;
+        int  b = 2;
+        double expected = 2.5;
+
+        // Act
+        double result = calculator.divide(a, b);
+
+        // Assert
+        assertEquals(expected, result);
     }
+
     @Test
     @DisplayName("Dividing by zero throws IllegalArgumentException")
     void divideByZeroThrowsException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> calculator.divide(5, 0));
+        // Arrange
+        int a = 5;
+        int b = 0;
+
+        // Act & Assert
+        // Nota: En JUnit 5, Act y Assert se combinan al probar excepciones con assertThrows
+        assertThrows(IllegalArgumentException.class, () -> calculator.divide(a, b));
     }
 
     @Test
     @DisplayName("Raising a number to a power returns the correct result")
     void powerReturnsCorrectResult() {
-        assertEquals(8.0, calculator.power(2, 3));
+        // Arrange
+        int base = 2;
+        int exponent = 3;
+        int expected = 8;
+
+        // Act
+        double result = calculator.power(base, exponent);
+
+        // Assert
+        assertEquals(expected, result);
+    }
+
+    @Test
+    @DisplayName("In case exponent is negative")
+    void powerReturnsCorrectResultInCaseExponentIsNegative() {
+        // Arrange
+        int base = 2;
+        int exponent = -1;
+        double expected = 0.5;
+
+        // Act
+        double result = calculator.power(base, exponent);
+
+        // Assert
+        assertEquals(expected, result);
+    }
+
+    @Test
+    @DisplayName("In case exponent is zero")
+    void powerReturnsCorrectResultInCaseExponentIsZero() {
+        // Arrange
+        int base = 200;
+        int exponent = 0;
+        int expected = 1;
+
+        // Act
+        double result = calculator.power(base, exponent);
+
+        // Assert
+        assertEquals(expected, result);
     }
 
 }
